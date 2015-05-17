@@ -1,0 +1,50 @@
+<div class="col-md-8">
+<h2 class="page-header">Employees <%= link_to 'New Employee', new_employee_path, class:"btn btn-success pull-right" %></h2>
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>DOB</th>
+                <th>Email</th>
+				<th>Options</th>
+            </tr>
+        </thead>
+ 
+        <tfoot>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>DOB</th>
+                <th>Email</th>
+				<th>Options</th>
+            </tr>
+        </tfoot>
+ 
+        <tbody>
+		<% @employees.each do |employee| %>
+            <tr>
+                <td><%= employee.first_name %></td>
+                <td><%= employee.last_name %></td>
+                <td><%= employee.user.username %></td>
+                <td><%= employee.dob %></td>
+                <td><%= employee.email %></td>
+				<td><a href="<%= edit_employee_path(employee) %>"> <i class="fa fa-edit"></i></a>
+					<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="<%= employee_path(employee)%>"><i class="fa fa-bitbucket"></i></a>
+				</td>
+            </tr>
+		<% end %>
+		</tbody>
+</table>
+</div>
+
+
+
+
+	<script>
+$(document).ready(function() {
+    $('#example').dataTable();
+} );
+</script>

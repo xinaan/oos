@@ -1,0 +1,180 @@
+<%= form_for @employee, :html => { class:"form-horizontal"} do |f| %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Employee Details</h3>
+  </div>
+  <div class="panel-body">
+    <div class="form-group <%= "has-error" if @employee.errors[:first_name].any? %> ">
+		<%= f.label 'Fisrt Name', class:"col-sm-2 control-label"%>
+		<div class="col-sm-10">
+			  <%= f.text_field :first_name, placeholder:"Fisrt Name",maxlength:20, class:"form-control" %>
+			  <% if @employee.errors[:first_name].any? %>
+				  <span class="help-block">
+				  <% @employee.errors.full_messages_for(:first_name).each do |msg| %> 
+					<%= msg %><br>
+				  <% end %>
+				  </span>
+			  <% end %>
+		</div>
+	</div>
+	
+	<div class="form-group <%= "has-error" if @employee.errors[:last_name].any? %> ">
+		<%= f.label 'Last Name', class:"col-sm-2 control-label"%>
+		<div class="col-sm-10">
+			  <%= f.text_field :last_name, placeholder:"Last Name",maxlength:20, class:"form-control" %>
+			  <% if @employee.errors[:last_name].any? %>
+				  <span class="help-block">
+				  <% @employee.errors.full_messages_for(:last_name).each do |msg| %> 
+					<%= msg %><br>
+				  <% end %>
+				  </span>
+			  <% end %>
+		</div>
+	</div>
+	
+	<div class="form-group <%= "has-error" if @employee.errors[:dob].any? %> ">
+		<%= f.label 'Date of Birth', class:"col-sm-2 control-label"%>
+		<div class="col-sm-10">
+			  <%= f.date_field :dob, class:"form-control" %>
+			  <% if @employee.errors[:dob].any? %>
+				  <span class="help-block">
+				  <% @employee.errors.full_messages_for(:dob).each do |msg| %> 
+					<%= msg %><br>
+				  <% end %>
+				  </span>
+			  <% end %>
+		</div>
+	</div>
+	
+	<div class="form-group <%= "has-error" if @employee.errors[:contact].any? %> ">
+		<%= f.label 'Contact Number', class:"col-sm-2 control-label"%>
+		<div class="col-sm-10">
+			  <%= f.text_field :contact, placeholder:"Phone Number",maxlength:7, class:"form-control" %>
+			  <% if @employee.errors[:contact].any? %>
+				  <span class="help-block">
+				  <% @employee.errors.full_messages_for(:contact).each do |msg| %> 
+					<%= msg %><br>
+				  <% end %>
+				  </span>
+			  <% end %>
+		</div>
+	</div>
+	
+	<div class="form-group <%= "has-error" if @employee.errors[:email].any? %> ">
+		<%= f.label 'Email', class:"col-sm-2 control-label"%>
+		<div class="col-sm-10">
+			  <%= f.email_field :email, placeholder:"Email",maxlength:100, class:"form-control" %>
+			  <% if @employee.errors[:email].any? %>
+				  <span class="help-block">
+				  <% @employee.errors.full_messages_for(:email).each do |msg| %> 
+					<%= msg %><br>
+				  <% end %>
+				  </span>
+			  <% end %>
+		</div>
+	</div>
+	
+	<div class="form-group <%= "has-error" if @employee.errors[:designation].any? %> ">
+		<%= f.label 'Designation', class:"col-sm-2 control-label"%>
+		<div class="col-sm-10">
+			  <%= f.text_field :designation, placeholder:"Designation",maxlength:50, class:"form-control" %>
+			  <% if @employee.errors[:designation].any? %>
+				  <span class="help-block">
+				  <% @employee.errors.full_messages_for(:designation).each do |msg| %> 
+					<%= msg %><br>
+				  <% end %>
+				  </span>
+			  <% end %>
+		</div>
+	</div>
+	
+	<div class="form-group <%= "has-error" if @employee.errors[:date_joined].any? %> ">
+		<%= f.label 'Date Joined', class:"col-sm-2 control-label"%>
+		<div class="col-sm-10">
+			  <%= f.date_field :date_joined, class:"form-control" %>
+			  <% if @employee.errors[:date_joined].any? %>
+				  <span class="help-block">
+				  <% @employee.errors.full_messages_for(:date_joined).each do |msg| %> 
+					<%= msg %><br>
+				  <% end %>
+				  </span>
+			  <% end %>
+		</div>
+	</div>
+	
+	<div class="form-group <%= "has-error" if @employee.errors[:role_id].any? %> ">
+		<%= f.label 'Role', class:"col-sm-2 control-label"%>
+		<div class="col-sm-10">
+			  <%= f.select :role_id, Role.all.collect {|u| [u.name, u.id]}, {prompt:"Select a Role"}, class:"form-control"%>
+			  <% if @employee.errors[:role_id].any? %>
+				  <span class="help-block">
+				  <% @employee.errors.full_messages_for(:role_id).each do |msg| %> 
+					<%= msg %><br>
+				  <% end %>
+				  </span>
+			  <% end %>
+		</div>
+	</div>
+	
+<hr>
+
+	<%= f.fields_for :user do |builder| %>
+		<div class="form-group <%= "has-error" if @employee.user.errors[:username].any? %> ">
+			<%= builder.label 'Username', class:"col-sm-2 control-label"%>
+			<div class="col-sm-10">
+				  <%= builder.text_field :username, placeholder:"Username",maxlength:8, class:"form-control" %>
+				  <% if @employee.user.errors[:username].any? %>
+					  <span class="help-block">
+					  <% @employee.user.errors.full_messages_for(:username).each do |msg| %> 
+						<%= msg %><br>
+					  <% end %>
+					  </span>
+				  <% end %>
+			</div>
+		</div>
+
+		<div class="form-group <%= "has-error" if @employee.user.errors[:password].any? %> ">
+			<%= builder.label 'Password', class:"col-sm-2 control-label"%>
+			<div class="col-sm-10">
+				  <%= builder.password_field :password, placeholder:"Password",maxlength:25, class:"form-control" %>
+				  <% if @employee.user.errors[:password].any? %>
+					  <span class="help-block">
+					  <% @employee.user.errors.full_messages_for(:password).each do |msg| %> 
+						<%= msg %><br>
+					  <% end %>
+					  </span>
+				  <% end %>
+			</div>
+		</div>	
+		
+		<div class="form-group <%= "has-error" if @employee.user.errors[:password_confirmation].any? %> ">
+			<%= builder.label 'Confirm Password', class:"col-sm-2 control-label"%>
+			<div class="col-sm-10">
+				  <%= builder.password_field :password_confirmation, placeholder:"Password",maxlength:25, class:"form-control" %>
+				  <% if @employee.user.errors[:password_confirmation].any? %>
+					  <span class="help-block">
+					  <% @employee.user.errors.full_messages_for(:password_confirmation).each do |msg| %> 
+						<%= msg %><br>
+					  <% end %>
+					  </span>
+				  <% end %>
+			</div>
+		</div>	
+	<% end %>
+	
+ </div>
+ <div class="panel-footer">
+	  <div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<div class="btn-group">
+						<%= f.submit class:"btn btn-success" %>
+						<% end %> 
+						
+				</div>
+			
+			</div>
+	  </div>
+  </div>
+</div> 
+  

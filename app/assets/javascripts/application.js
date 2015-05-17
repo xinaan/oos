@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery_ujs
 //= require bootstrap-sprockets
 //= require metisMenu/dist/metisMenu.min
-//= require startbootstrap-sb-admin-2/dist/js/sb-admin-2.js
+//= require startbootstrap-sb-admin-2/dist/js/sb-admin-2
+//= require datatables/media/js/jquery.dataTables

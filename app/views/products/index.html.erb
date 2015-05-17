@@ -1,8 +1,73 @@
-<h1>Products#index</h1>
-<% @products.each do |product| %>
+<div class="col-md-8">
+<h2 class="page-header">Products <%= link_to 'New Product', new_product_path, class:"btn btn-success pull-right" %></h2>
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Size</th>
+                <th>Price</th>
+                <th>Created date</th>
+				<th>Options</th>
+            </tr>
+        </thead>
+ 
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Size</th>
+                <th>Price</th>
+                <th>Created date</th>
+				<th>Options</th>
+            </tr>
+        </tfoot>
+ 
+        <tbody>
+		<% @products.each do |product| %>
+            <tr>
+                <td><%= product.name %></td>
+                <td><%= product.category.name %></td>
+                <td><%= product.size %></td>
+                <td><%= number_to_currency(product.price, unit: "MVR ") %></td>
+                <td><%= time_ago_in_words(product.created_at) %></td>
+				<td><a href="<%= edit_product_path(product) %>"> <i class="fa fa-edit"></i></a>
+					<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="<%= product_path(product)%>"><i class="fa fa-bitbucket"></i></a>
+				</td>
+            </tr>
+		<% end %>
+		</tbody>
+</table>
+</div>
 
-    <p><%= product.name %></p><br>
-    <p><%= product.category.name %></p><br>
-    <p><%= product.price %></p><br>
+<div class="col-md-4">
+	<h2 class="page-header">Categories <%= link_to 'New Category', new_category_path, class:"btn btn-success pull-right" %></h2>
+	<ul class="list-group">
+		<% @categories.each do |cat| %>
+		  <li class="list-group-item"><%= cat.name %> 
+			<div class="pull-right">
+				<a  href="<%= edit_category_path(cat) %>" data-toggle="tooltip" data-placement="top" title="Edit"> <i class="fa fa-edit"></i></a>
+				<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="<%= category_path(cat)%>" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-bitbucket"></i></a>
+			</div>
+		  </li>
+		  <% if cat.subcategories.any? %>
+				<% sub = cat.subcategories %>				
+				<% sub.each do |s| %>
+					<li class="list-group-item"><span class="glyphicon glyphicon-menu-right"></span><%= " " + s.name %>
+						<div class="pull-right">
+							<a  href="<%= edit_category_path(s) %>" data-toggle="tooltip" data-placement="top" title="Edit"> <i class="fa fa-edit"></i></a>
+							<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="<%= category_path(s)%>" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-bitbucket"></i></a>
+						</div>
+					</li>
+				<% end %>
+		  <% end %>
+		<% end %>
+	</ul>
+</div>
 
-<% end %>
+
+	<script>
+$(document).ready(function() {
+    $('#example').dataTable();
+} );
+</script>

@@ -9,10 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Fast Food | Admin Panel</title>
 
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 	
+   <%= javascript_include_tag "application" %>
+   <%= csrf_meta_tags %>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -35,7 +37,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="index.html">Fast Food | Admin Panel</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -267,19 +269,10 @@
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a class="active" href="#"><i class="fa fa-list fa-fw"></i> Products<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Flot Charts</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Morris.js Charts</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a class="<%= 'active' if current_page?(controller: 'products') %>" href="<%= products_path %>"><i class="fa fa-list fa-fw"></i> Products</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a class="<%= 'active' if current_page?(controller: 'employees') %>" href="<%= employees_path %>"><i class="fa fa-users fa-fw"></i> Employees</a>
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
@@ -362,7 +355,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Blank</h1>
+						
 						<%= yield %>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -377,7 +370,6 @@
     </div>
     <!-- /#wrapper -->
 
-   <%= javascript_include_tag "application" %>
 
 </body>
 

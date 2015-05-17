@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511161002) do
+ActiveRecord::Schema.define(version: 20150517200453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20150511161002) do
     t.string   "contact",    limit: 10, null: false
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
-    t.integer  "user_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -68,7 +67,7 @@ ActiveRecord::Schema.define(version: 20150511161002) do
     t.integer  "role_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "user_id"
+    t.boolean  "gender"
   end
 
   add_index "employees", ["first_name"], name: "index_employees_on_first_name", using: :btree
@@ -124,6 +123,8 @@ ActiveRecord::Schema.define(version: 20150511161002) do
     t.string   "salt"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "employee_id"
+    t.integer  "customer_id"
   end
 
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
