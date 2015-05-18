@@ -27,7 +27,7 @@
 		<% @products.each do |product| %>
             <tr>
                 <td><%= product.name %></td>
-                <td><%= product.category.name + ", " + product.category.parent.name if producduct.category.parent?  %></td>
+                <td><%= product.category.name %></td>
                 <td><%= product.size %></td>
                 <td><%= number_to_currency(product.price, unit: "MVR ") %></td>
                 <td><%= time_ago_in_words(product.created_at) %></td>
