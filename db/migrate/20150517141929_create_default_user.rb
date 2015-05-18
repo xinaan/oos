@@ -1,4 +1,8 @@
 class CreateDefaultUser < ActiveRecord::Migration
+  def change
+	create_default 
+  end
+
   def self.create_default
 	adminUser = User.new
 	adminUser.username = "admin"
