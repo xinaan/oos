@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   layout "admin", only: [:new, :edit, :index]
   before_action :set_product, only: [:show, :edit, :update, :destroy] 
-  before_filter :confirm_logged_in
+  before_filter :confirm_logged_in, only: [:new, :edit, :index]
   def index
     @products = Product.all
 	@categories = Category.main
