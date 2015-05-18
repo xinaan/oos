@@ -20,7 +20,6 @@ before_filter :confirm_logged_in, :except => [:login, :attempt_login, :logout]
 			session[:user_id] = authorized_user.id
 			session[:username] = authorized_user.username
 			redirect_to products_path
-			flash[:notice]= "Welcome " + authorized_user.username + "."
 		else
 			flash[:notice]= "Invalid Username/Password Try Again"
 			redirect_to(action: 'login')
