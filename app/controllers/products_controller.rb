@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  layout "admin", only: [:new, :edit, :index]
+  layout "admin"
   before_action :set_product, only: [:show, :edit, :update, :destroy] 
   before_filter :confirm_logged_in, only: [:new, :edit, :index]
   def index
