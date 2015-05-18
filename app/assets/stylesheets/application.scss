@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap/dist/css/bootstrap";
 @import "startbootstrap-sb-admin-2/dist/css/sb-admin-2";
-@import "datatables/media/css/jquery.dataTables";
+@import "datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css";
+@import "datatables-responsive/css/dataTables.responsive.scss";
 @import "metisMenu/dist/metisMenu.min";
