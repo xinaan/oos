@@ -16,4 +16,4 @@
 //= require metisMenu/dist/metisMenu.min
 //= require startbootstrap-sb-admin-2/dist/js/sb-admin-2
 //= require datatables/media/js/jquery.dataTables
-//= require datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.
+//= require datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min
