@@ -48,7 +48,7 @@
                         <i class="fa fa-user fa-fw"></i> <%= session[:username].titleize %> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                           <li><a href="access/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                           <li><a href="<%= logout_path %>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

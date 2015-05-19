@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   layout "admin"
-  before_action :set_product, only: [:show, :edit, :update, :destroy] 
-  before_filter :confirm_logged_in, only: [:new, :edit, :index]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :invisible] 
+  before_filter :confirm_logged_in, only: [:new, :edit, :index, :invisible]
   def index
     @products = Product.all
 	@categories = Category.main
@@ -60,6 +60,15 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+	def invisible
+		@product.invisible
+		@product.save
+		respond_to do |format|
+		  format.html { redirect_to products_path }
+		  format.json { head :no_content }
+		end
+	end
 
   private
     # Use callbacks to share common setup or constraints between actions.

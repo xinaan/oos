@@ -17,8 +17,14 @@
                 <td><%= product.category.name %></td>
                 <td><%= product.size %></td>
                 <td class="text-center"><%= number_to_currency(product.price, unit: "MVR ") %></td>
-				<td class="text-center"><a href="<%= edit_product_path(product) %>"> <i class="fa fa-pencil fa-lg"></i></a>
-					<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="<%= product_path(product)%>"><i class="fa fa-trash-o fa-lg text-danger"></i></a>
+				<td class="text-center">
+					<a href="<%= edit_product_path(product) %>"> 
+						<i class="fa fa-pencil fa-lg"></i></a>
+					<a href="<%= invisible_product_path(product) %>"> 
+						<i class="fa fa-eye<%= product.visible ? '' : '-slash' %> fa-lg"></i></a> 
+					<a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="<%= product_path(product)%>">
+						<i class="fa fa-trash-o fa-lg text-danger"></i>
+					</a>
 				</td>
             </tr>
 		<% end %>
