@@ -80,6 +80,7 @@
 	<div class="form-group <%= "has-error" if @product.errors[:visible].any? %> ">
 		<%= f.label 'Visible', class:"col-sm-2 control-label"%>
 		<div class="col-sm-10">
+			<div class="checkbox">
 			  <%= f.check_box :visible , class:"form-control" %>
 			  <% if @product.errors[:visible].any? %>
 				  <span class="help-block">
@@ -88,6 +89,7 @@
 					  <% end %>
 				  </span>
 			  <% end %>
+			  </div>
 		</div>
 	</div>
 	
