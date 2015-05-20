@@ -7,8 +7,9 @@ class User < ActiveRecord::Base
  
  before_save :create_hashed_password
  after_save :clear_password
- 
+ validates_format_of :username, with: /\A[a-zA-Z0-9]+\z/
  validates :username, :length => { :within => 5..25 }, :uniqueness => true
+ 
  validates :password, confirmation: true
  validates :password_confirmation, presence: true
  validates_length_of :password, :within => 5..25, :on => :create
