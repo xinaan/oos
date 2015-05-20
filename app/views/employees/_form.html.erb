@@ -36,7 +36,7 @@
 	<div class="form-group <%= "has-error" if @employee.errors[:gender].any? %> ">
 		<%= f.label 'Gender', class:"col-sm-2 control-label"%>
 		<div class="col-sm-10">
-			  <%= f.select :gender, Employee.sex.collect {|name, value| [name, value]}, {prompt:"Select a Gender"}, class:"form-control"%>
+			  <%= f.select :gender, [['Male', true], ['Female', false]], {prompt:"Select a Gender"}, class:"form-control"%>
 			  <% if @employee.errors[:gender].any? %>
 				  <span class="help-block">
 				  <% @employee.errors.full_messages_for(:gender).each do |msg| %> 
@@ -50,7 +50,7 @@
 	<div class="form-group <%= "has-error" if @employee.errors[:dob].any? %> ">
 		<%= f.label 'Date of Birth', class:"col-sm-2 control-label"%>
 		<div class="col-sm-10">
-			  <%= f.date_field :dob, class:"form-control" %>
+			  <%= f.date_field :dob, :order => [:day, :month, :year], :start_year => 1900, :end_year => Time.now.year - 18, class:"form-control" %>
 			  <% if @employee.errors[:dob].any? %>
 				  <span class="help-block">
 				  <% @employee.errors.full_messages_for(:dob).each do |msg| %> 
