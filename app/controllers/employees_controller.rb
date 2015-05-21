@@ -28,6 +28,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
+		UserMailer.activation_email(@employee.user).deliver_now
         format.html { redirect_to employees_path, notice: 'Employee was successfully created.' }
         format.json { render :show, status: :created, location: @employee }
       else
