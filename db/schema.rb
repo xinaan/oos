@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520205618) do
+ActiveRecord::Schema.define(version: 20150521095946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20150520205618) do
     t.string   "last_name",  limit: 45
     t.date     "dob"
     t.boolean  "gender",                null: false
-    t.string   "email",                 null: false
     t.string   "contact",    limit: 10, null: false
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
@@ -61,7 +60,6 @@ ActiveRecord::Schema.define(version: 20150520205618) do
     t.string   "last_name"
     t.date     "dob"
     t.string   "contact"
-    t.string   "email"
     t.string   "designation"
     t.date     "date_joined"
     t.integer  "role_id"
@@ -125,10 +123,13 @@ ActiveRecord::Schema.define(version: 20150520205618) do
     t.string   "username"
     t.string   "hashed_password"
     t.string   "salt"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "employee_id"
     t.integer  "customer_id"
+    t.string   "activation_code"
+    t.boolean  "is_verified",     default: false
+    t.string   "email"
   end
 
   add_index "users", ["username"], name: "index_users_on_username", using: :btree

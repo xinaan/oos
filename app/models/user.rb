@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
  
  validates :password, confirmation: true
  validates :password_confirmation, presence: true
+ validates :email, presence: true, :uniqueness => true
  validates_length_of :password, :within => 5..25, :on => :create
- 
  
  #attr_protected :hashed_password,:salt
  
@@ -49,15 +49,21 @@ class User < ActiveRecord::Base
 	Digest::SHA1.hexdigest("Put #{salt} on the #{password}")
  end
  
+ def self.acode(username="")
+	code = Digest::SHA1.hexdigest("Use #{username} with #{Time.now} as activation code")
+	code = code.at(1..9)
+	code
+ end
  private
  
  def create_hashed_password
 	unless password.blank?
 		self.salt = User.make_salt(username) if salt.blank?
 		self.hashed_password = User.hash_with_salt(password, salt)
+		self.activation_code = User.acode(username)
 	end
  end
- 
+  
  def clear_password
 	self.password = nil
  end
