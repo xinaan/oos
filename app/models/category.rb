@@ -9,4 +9,5 @@ class Category < ActiveRecord::Base
  
  scope :main, lambda {where category_id: nil}
  
+ 
 end

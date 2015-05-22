@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
-  layout "admin"
-  layout 'application', only: :show
+  layout :resolve_layout
   before_action :set_product, only: [:show, :edit, :update, :destroy, :invisible] 
   before_filter :confirm_logged_in, only: [:new, :edit, :index, :invisible]
   def index
@@ -81,6 +80,14 @@ class ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:name, :description, :category_id, :size, :attribute,:price, :visible, :image)
-	
     end
+	
+  def resolve_layout
+    case action_name
+		when "show"
+		  "application"
+		else
+		  "admin"
+    end
+  end
 end

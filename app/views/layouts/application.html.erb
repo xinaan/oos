@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Oos</title>
-
-
-</head>
-<body>
-
-
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -79,7 +69,7 @@
     <div class="col-md-3">
       <p class="text-center">
         <a href="#">
-          <img alt="Brand" style="height:150px" src="img/logo.png">
+          <img alt="Brand" style="height:150px" src="#">
         </a>
       </p>
       <hr>
@@ -96,16 +86,16 @@
         <p class="list-group-item active">
           Menu
         </p>
-        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-chevron-right"></span> Breakfast</a>
-        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-chevron-right"></span> Dishes</a>
-        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-chevron-right"></span> Pizza</a>
-        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-chevron-right"></span> Burger</a>
-        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-chevron-right"></span> Sandwich</a>
-        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-chevron-right"></span> Rice & Noodles</a>
-        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-chevron-right"></span> Pasta</a>
-        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-chevron-right"></span> Dessert</a>
-        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-chevron-right"></span> Drinks</a>
-      </div>
+		<% Category.main.each do |cat| %>
+			<a href="<%= category_path(cat) %>" class="list-group-item"> <p style="margin:0" class="<%= 'text-primary' if current_page?(category_path(cat)) %>"><%= cat.name.titleize %></p></a>
+			<% if cat.subcategories.any? %>
+				<% sub = cat.subcategories %>				
+				<% sub.each do |s| %>
+					<a href="<%= category_path(s) %>" class="list-group-item"> <p style="margin:0" class="<%= 'text-primary' if current_page?(category_path(s)) %>"><span class="fa fa-chevron-right"></span> <%= s.name.titleize %></p></a>
+				<% end %>
+			<% end %>
+		<% end %>
+	  </div>
 
 
 
@@ -133,10 +123,12 @@
               </div>
             </div>
             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left"></span>
+              <span class="fa fa-chevron-left fa-lg" style="position: absolute; top:48%; left:15%;" aria-hidden="true"></span>
+			  <span class="sr-only">Previous</span>
             </a>
             <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right"></span>
+              <span class="fa fa-chevron-right fa-lg" style="position: absolute; top:48%; right:15%;" aria-hidden="true"></span>
+			  <span class="sr-only">Previous</span>
             </a>
           </div>
         </div>

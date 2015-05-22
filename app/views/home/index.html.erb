@@ -7,22 +7,12 @@
       <div class="col-sm-4 col-lg-4 col-md-4">
         <a href="<%= product_path(product) %>">
           <div class="thumbnail">
-            <img src=" <%= product.image.url.nil? ? product.image.url : 'http://placehold.it/320x200' %>" alt="">
+            <img src=" <%= product.image.url.nil? ? product.image.url : 'http://placehold.it/320x200&text=' + product.name %>" alt="">
             <div class="caption">
-              <h4 class="pull-right"><%= number_to_currency(product.price, unit: "MVR ") %></h4>
+              
               <h4><a href="<%= product_path(product) %>"><%= product.name.titleize %></a></h4>
-              <button type="submit" class="btn btn-success pull-right">Order Now</button>
-              <button type="submit" class="btn btn-danger">Add to Cart</button>
-            </div>
-            <div class="ratings">
-              <p class="pull-right">15 reviews</p>
-              <p>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-              </p>
+              <button type="submit" class="btn btn-success pull-right"><i class="fa fa-shopping-cart fa-lg"></i> Add to cart</button>
+              <h3 class="text-warning"><sup>MVR</sup> <%=number_with_precision(product.price, precision: 2) %></h3>
             </div>
           </div>
         </a>

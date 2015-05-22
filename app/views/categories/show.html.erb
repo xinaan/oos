@@ -1,0 +1,41 @@
+<div class="page-header">
+  <h3>Products in <%= @category.name.titleize %></h3>
+</div>
+<div class="row">
+  <% @category.products.each do |product| %>
+
+      <div class="col-sm-4 col-lg-4 col-md-4">
+        <a href="<%= product_path(product) %>">
+          <div class="thumbnail">
+            <img src=" <%= product.image.url.nil? ? product.image.url : 'http://placehold.it/320x200&text=' + product.name %>" alt="">
+            <div class="caption">
+              
+              <h4><a href="<%= product_path(product) %>"><%= product.name.titleize %></a></h4>
+              <button type="submit" class="btn btn-success pull-right"><i class="fa fa-shopping-cart fa-lg"></i> Add to cart</button>
+              <h3 class="text-warning"><sup>MVR</sup> <%=number_with_precision(product.price, precision: 2) %></h3>
+            </div>
+          </div>
+        </a>
+      </div>
+  <% end %>
+  
+  <% if @category.category_id.nil? %>
+	<% @category.subcategories.each do |sub| %>
+		<% sub.products.each do |sf| %>
+		  <div class="col-sm-4 col-lg-4 col-md-4">
+			<a href="<%= product_path(sf) %>">
+			  <div class="thumbnail">
+				<img src=" <%= sf.image.url.nil? ? sf.image.url : 'http://placehold.it/320x200&text=' + sf.name %>" alt="">
+				<div class="caption">
+				  
+				  <h4><a href="<%= product_path(sf) %>"><%= sf.name.titleize %></a></h4>
+				  <button type="submit" class="btn btn-success pull-right"><i class="fa fa-shopping-cart fa-lg"></i> Add to cart</button>
+				  <h3 class="text-warning"><sup>MVR</sup> <%=number_with_precision(sf.price, precision: 2) %></h3>
+				</div>
+			  </div>
+			</a>
+		  </div>
+		<% end %>
+	<% end %>	  
+  <% end %>
+</div>

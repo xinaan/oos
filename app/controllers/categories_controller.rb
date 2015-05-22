@@ -1,12 +1,16 @@
 class CategoriesController < ApplicationController
-layout "admin"
-before_action :set_category, only: [:edit, :update, :destroy]
-before_filter :confirm_logged_in
+layout :resolve_layout
+before_action :set_category, only: [:show, :edit, :update, :destroy]
+before_filter :confirm_logged_in, except: :show
   # GET /categories/new
   def new
     @category = Category.new
   end
-
+  
+  def show
+	
+	
+  end
   # GET /categories/1/edit
   def edit
   end
@@ -61,4 +65,13 @@ before_filter :confirm_logged_in
     def category_params
       params.require(:category).permit(:name, :category_id)
     end
+	
+	def resolve_layout
+		case action_name
+			when "show"
+			  "application"
+			else
+			  "admin"
+		end
+	end
 end
