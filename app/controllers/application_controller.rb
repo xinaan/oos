@@ -4,12 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def confirm_logged_in
-    unless session[:user_id]
-      flash[:notice] = "Please log in to Access this page"
-      redirect_to(:controller => 'access', :action => 'login')
-      return false # halts the before_filter
+    unless session[:is_verified]
+      if session[:user_id]
+        flash[:notice] = "Please Verify Your Account"
+        redirect_to(:controller => 'access', :action => 'verify')
+        false # halts the before_filter
+      else
+        flash[:notice] = "Please log in to Access this page"
+        redirect_to(:controller => 'access', :action => 'login')
+        false
+      end
     else
-      return true
+      true
     end
   end
 end

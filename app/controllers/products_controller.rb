@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   layout "admin"
+  layout 'application', only: :show
   before_action :set_product, only: [:show, :edit, :update, :destroy, :invisible] 
   before_filter :confirm_logged_in, only: [:new, :edit, :index, :invisible]
   def index
@@ -10,6 +11,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+
   end
 
   # GET /products/new

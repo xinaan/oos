@@ -5,8 +5,10 @@ class User < ActiveRecord::Base
 	belongs_to :employee
  attr_accessor :password
  
- before_save :create_hashed_password
+ #before_save :create_hashed_password
  after_save :clear_password
+
+
  validates_format_of :username, with: /\A[a-zA-Z0-9]+\z/
  validates :username, :length => { :within => 5..25 }, :uniqueness => true
  
@@ -26,10 +28,27 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.verify(id="", code="")
+    user = User.find(id)
+    if user && user.code_match?(code,user.activation_code)
+      return user
+    else
+      return false
+    end
+  end
+
+  def active
+    self.is_verified= true
+  end
+
   # The same password string with the same hash method and salt
   # should always generate the same hashed_password.
   def password_match?(password="")
     hashed_password == User.hash_with_salt(password, salt)
+  end
+
+  def code_match?(code="",act_code="")
+    code == act_code
   end
   
   def self.to_csv(options = {})
@@ -54,6 +73,7 @@ class User < ActiveRecord::Base
 	code = code.at(1..9)
 	code
  end
+
  private
  
  def create_hashed_password
@@ -61,6 +81,7 @@ class User < ActiveRecord::Base
 		self.salt = User.make_salt(username) if salt.blank?
 		self.hashed_password = User.hash_with_salt(password, salt)
 		self.activation_code = User.acode(username)
+    self.is_verified= true
 	end
  end
   

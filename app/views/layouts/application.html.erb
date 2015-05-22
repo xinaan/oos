@@ -21,7 +21,9 @@
 
   <title>Fast Food</title>
 
-  <%= stylesheet_link_tag('application', media: 'all') %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <%= javascript_include_tag "application" %>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -61,12 +63,6 @@
         </li>
       </ul>
       <form class="navbar-form navbar-right">
-        <div class="form-group">
-          <input type="text" placeholder="Email" class="form-control">
-        </div>
-        <div class="form-group">
-          <input type="password" placeholder="Password" class="form-control">
-        </div>
         <button type="submit" class="btn btn-success">Sign in</button>
         <button type="submit" class="btn btn-warning">Sign up</button>
       </form>
@@ -116,6 +112,37 @@
     </div>
 
     <div class="col-md-9">
+      <div class="row carousel-holder">
+
+        <div class="col-md-12">
+          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="item active">
+                <img class="slide-image" src="http://placehold.it/800x300&text=First%20Slide" alt="">
+              </div>
+              <div class="item">
+                <img class="slide-image" src="http://placehold.it/800x300&text=Second%20Slide" alt="">
+              </div>
+              <div class="item">
+                <img class="slide-image" src="http://placehold.it/800x300&text=Third%20Slide" alt="">
+              </div>
+            </div>
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
       <%= yield %>
 
     </div>
