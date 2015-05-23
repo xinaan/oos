@@ -1,18 +1,23 @@
 Rails.application.routes.draw do
-
+  resources :customers
 	resources :users
+
 	resources :categories
+
 	resources :products
+
 	resources :employees
+
 	get 'products/:id/invisible', to: 'products#invisible', as: :invisible_product
+
 	get 'logout', to: 'access#logout'
-	
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
    root 'home#index', as: :home
-   #match ':controller(/:action(/:id(.:format)))', via: :all
+   match ':controller(/:action(/:id(.:format)))', via: :all
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

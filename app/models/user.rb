@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 	belongs_to :employee
  attr_accessor :password
  
- #before_save :create_hashed_password
+ before_save :create_hashed_password
  after_save :clear_password
 
 
@@ -81,7 +81,6 @@ class User < ActiveRecord::Base
 		self.salt = User.make_salt(username) if salt.blank?
 		self.hashed_password = User.hash_with_salt(password, salt)
 		self.activation_code = User.acode(username)
-    self.is_verified= true
 	end
  end
   

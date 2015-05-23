@@ -7,7 +7,7 @@ class Employee < ActiveRecord::Base
   validates_uniqueness_of :contact
   validates_format_of :contact, with: /[7,9]{1}[0-9]{6}/, message: "must start with 7 or 9"
   validates_length_of :contact, minimm: 7, maximum: 7, message: "must have 7 digits"
-  validates_exclusion_of :dob, :in => 18.years.ago..Time.now
+  validates_exclusion_of :dob, :in => 65.years.ago..15.years.ago
 
   
 	def fullname

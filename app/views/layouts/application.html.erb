@@ -54,7 +54,7 @@
       </ul>
       <form class="navbar-form navbar-right">
         <button type="submit" class="btn btn-success">Sign in</button>
-        <button type="submit" class="btn btn-warning">Sign up</button>
+        <a href="<%= new_customer_path %>" class="btn btn-warning">Sign up</a>
       </form>
     </div>
     <!-- /.navbar-collapse -->
@@ -69,7 +69,7 @@
     <div class="col-md-3">
       <p class="text-center">
         <a href="#">
-          <img alt="Brand" style="height:150px" src="#">
+          <img alt="Brand" style="height:150px" src="<%= asset_path('logo.png') %>">
         </a>
       </p>
       <hr>
