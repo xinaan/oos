@@ -74,7 +74,7 @@ small {
 sub,
 sup {
   position: relative;
-  font-size: 75%;
+  font-size: 65%;
   line-height: 0;
   vertical-align: baseline;
 }
