@@ -52,8 +52,14 @@
           <a href="#">Contact</a>
         </li>
       </ul>
+        <%= form_tag({controller: "products", action:"search"}, {:class => 'navbar-form navbar-left'}) do %>
+        <div class="form-group">
+          <%= text_field_tag :term, nil, placeholder:"Search",class:"form-control" %>
+        </div>
+            <%= submit_tag("Search",class:"btn btn-warning" )%>
+        <% end %>
       <form class="navbar-form navbar-right">
-        <button type="submit" class="btn btn-success">Sign in</button>
+        <a href="<%= login_path %>" class="btn btn-success">Sign in</a>
         <a href="<%= new_customer_path %>" class="btn btn-warning">Sign up</a>
       </form>
     </div>
@@ -73,13 +79,7 @@
         </a>
       </p>
       <hr>
-      <form class="form-inline" style="margin-bottom:10px;">
-        <div class="form-group">
-          <input type="email" class="form-control" id="exampleInputEmail2" placeholder="What are you looking for">
-        </div>
-        <button type="submit" class="btn btn-primary">Search</button>
-      </form>
-      <hr>
+
 
 
       <div class="list-group">

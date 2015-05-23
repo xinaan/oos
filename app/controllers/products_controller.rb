@@ -52,6 +52,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def search
+    @products = Product.search(params[:term])
+  end
+
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
@@ -84,7 +88,7 @@ class ProductsController < ApplicationController
 	
   def resolve_layout
     case action_name
-		when "show"
+		when "show", "search"
 		  "application"
 		else
 		  "admin"

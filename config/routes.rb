@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 	get 'products/:id/invisible', to: 'products#invisible', as: :invisible_product
 
 	get 'logout', to: 'access#logout'
+  get "login", to: "access#login", as: :login
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
