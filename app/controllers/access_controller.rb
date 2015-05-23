@@ -1,5 +1,5 @@
 class AccessController < ApplicationController
-before_filter :confirm_logged_in, :except => [:login, :attempt_login, :logout, :verify, :attempt_verify]
+before_filter :confirm_logged_in, :except => [:login, :attempt_login, :logout, :attempt_verify]
   layout 'login'
   
   def index
@@ -7,7 +7,10 @@ before_filter :confirm_logged_in, :except => [:login, :attempt_login, :logout, :
   end
   
   def verify
-
+	user = User.find(session[:user_id])
+	if user.is_verified?
+		redirect_to products_path
+	end
   end
 
   def login

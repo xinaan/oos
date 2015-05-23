@@ -14,7 +14,7 @@ class Product < ActiveRecord::Base
 	validates_attachment_size :image, :less_than => 2.megabytes
 	scope :active, ->{ where(visible: true) }	
 	scope :in_active, ->{ where(visible: false) }
-	scope :search, lambda {|query| where(["name LIKE ?", "%#{query}%"])}
+	scope :search, lambda {|query| where(["name ILIKE ?", "%#{query}%"])}
 	def invisible
 		if visible == false 
 			self.visible = true
