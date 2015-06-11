@@ -18,7 +18,15 @@ class User < ActiveRecord::Base
  validates_length_of :password, :within => 5..25, :on => :create
  
  #attr_protected :hashed_password,:salt
- 
+  def self.is_customer(id="")
+	user = User.find(id)
+	unless user.customer_id.nil?
+		true
+	else
+		false
+	end
+  end
+  
   def self.authenticate(username="", password="")
     user = User.find_by_username(username)
     if user && user.password_match?(password)
@@ -38,7 +46,7 @@ class User < ActiveRecord::Base
   end
 
   def active
-    self.is_verified= true
+    self.is_verified= true 
   end
 
   # The same password string with the same hash method and salt

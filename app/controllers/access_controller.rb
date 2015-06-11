@@ -1,5 +1,5 @@
 class AccessController < ApplicationController
-before_filter :confirm_logged_in, :except => [:login, :attempt_login, :logout, :attempt_verify]
+before_filter :confirm_logged_in, :except => [:login, :attempt_login, :logout, :verify, :attempt_verify]
   layout 'login'
   
   def index
@@ -8,8 +8,8 @@ before_filter :confirm_logged_in, :except => [:login, :attempt_login, :logout, :
   
   def verify
 	user = User.find(session[:user_id])
-	if user.is_verified?
-		redirect_to products_path
+	if user.nil?
+		redirect_to login_path
 	end
   end
 
@@ -24,7 +24,11 @@ before_filter :confirm_logged_in, :except => [:login, :attempt_login, :logout, :
 			session[:username] = authorized_user.username
 			if authorized_user.is_verified?
 				session[:is_verified] = true
-				redirect_to products_path
+				if User.is_customer(authorized_user.id)
+					redirect_to products_path
+				else
+					redirect_to home_path
+				end
 			else
 				flash[:notice]= "Please Verify Your Account"
 				redirect_to(action: 'verify')
